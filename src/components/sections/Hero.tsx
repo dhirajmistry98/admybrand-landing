@@ -1,13 +1,26 @@
+"use client";
 import React, { useState } from "react";
 import { ArrowRight, Play, BarChart3, Target, Zap, TrendingUp, Users, Mail, Globe, Star, X } from "lucide-react";
 
-const Badge = ({ children }) => (
+interface BadgeProps {
+  children: React.ReactNode;
+}
+
+const Badge: React.FC<BadgeProps> = ({ children }) => (
   <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium backdrop-blur-sm border border-white/20">
     {children}
   </span>
 );
 
-const Button = ({ children, variant = "primary", size = "md", onClick, className = "" }) => {
+interface ButtonProps {
+  children: React.ReactNode;
+  variant?: "primary" | "secondary";
+  size?: "md" | "lg";
+  onClick?: () => void;
+  className?: string;
+}
+
+const Button: React.FC<ButtonProps> = ({ children, variant = "primary", size = "md", onClick, className = "" }) => {
   const baseClasses = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 hover:scale-105";
   const variants = {
     primary: "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 shadow-lg",
@@ -28,8 +41,8 @@ const Button = ({ children, variant = "primary", size = "md", onClick, className
   );
 };
 
-const AnimatedDashboard = ({ animatedElements }) => (
-  <div className={`relative bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-2xl p-8 max-w-5xl mx-auto border border-white/10 ${animatedElements?.has('dashboard') ? 'animate-fade-in' : ''}`}>
+const AnimatedDashboard: React.FC = () => (
+  <div className="relative bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-2xl p-8 max-w-5xl mx-auto border border-white/10">
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
@@ -90,8 +103,8 @@ const AnimatedDashboard = ({ animatedElements }) => (
   </div>
 );
 
-const FeatureGrid = ({ animatedElements }) => (
-  <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto ${animatedElements?.has('features') ? 'animate-fade-in' : ''}`}>
+const FeatureGrid: React.FC = () => (
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
     {[
       { icon: Zap, title: "AI Content Generation", desc: "Create compelling copy in seconds" },
       { icon: Target, title: "Smart Targeting", desc: "Reach the right audience automatically" },
@@ -112,8 +125,8 @@ const FeatureGrid = ({ animatedElements }) => (
   </div>
 );
 
-const FloatingElements = ({ animatedElements }) => (
-  <div className={`relative max-w-5xl mx-auto h-96 overflow-hidden rounded-2xl ${animatedElements?.has('floating') ? 'animate-fade-in' : ''}`}>
+const FloatingElements: React.FC = () => (
+  <div className="relative max-w-5xl mx-auto h-96 overflow-hidden rounded-2xl">
     <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-white/10 rounded-2xl"></div>
 
     <div className="absolute top-8 left-8 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>
@@ -152,26 +165,9 @@ const FloatingElements = ({ animatedElements }) => (
   </div>
 );
 
-const Hero = ({ animatedElements, setShowDemo: externalSetShowDemo }) => {
-  const [showDemo, setShowDemo] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('dashboard');
-  
-  // Use external setShowDemo if provided, otherwise use internal state
-  const handleShowDemo = () => {
-    if (externalSetShowDemo) {
-      externalSetShowDemo(true);
-    } else {
-      setShowDemo(true);
-    }
-  };
-
-  const handleCloseDemo = () => {
-    if (externalSetShowDemo) {
-      externalSetShowDemo(false);
-    } else {
-      setShowDemo(false);
-    }
-  };
+const HeroAlternatives: React.FC = () => {
+  const [showDemo, setShowDemo] = useState<boolean>(false);
+  const [selectedOption, setSelectedOption] = useState<string>('dashboard');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-pink-900">
@@ -192,7 +188,7 @@ const Hero = ({ animatedElements, setShowDemo: externalSetShowDemo }) => {
             <Button size="lg">
               Start Free Trial <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <Button variant="secondary" size="lg" onClick={handleShowDemo}>
+            <Button variant="secondary" size="lg" onClick={() => setShowDemo(true)}>
               <Play className="mr-2 w-5 h-5" /> Watch Demo
             </Button>
           </div>
@@ -214,24 +210,24 @@ const Hero = ({ animatedElements, setShowDemo: externalSetShowDemo }) => {
           </div>
 
           <div className="mt-16">
-            {selectedOption === 'dashboard' && <AnimatedDashboard animatedElements={animatedElements} />}
-            {selectedOption === 'features' && <FeatureGrid animatedElements={animatedElements} />}
-            {selectedOption === 'floating' && <FloatingElements animatedElements={animatedElements} />}
+            {selectedOption === 'dashboard' && <AnimatedDashboard />}
+            {selectedOption === 'features' && <FeatureGrid />}
+            {selectedOption === 'floating' && <FloatingElements />}
           </div>
         </div>
       </section>
 
-      {showDemo && !externalSetShowDemo && (
+      {showDemo && (
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
-          onClick={handleCloseDemo}
+          onClick={() => setShowDemo(false)}
         >
           <div
             className="bg-white rounded-xl p-6 w-full max-w-md mx-auto relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              onClick={handleCloseDemo}
+              onClick={() => setShowDemo(false)}
               className="absolute top-4 right-4 text-gray-500 hover:text-black"
             >
               <X className="w-5 h-5" />
@@ -245,4 +241,4 @@ const Hero = ({ animatedElements, setShowDemo: externalSetShowDemo }) => {
   );
 };
 
-export default Hero;
+export default HeroAlternatives;

@@ -152,7 +152,7 @@ const FloatingElements = () => (
   </div>
 );
 
-const HeroAlternatives = () => {
+const Hero = () => {
   const [showDemo, setShowDemo] = useState(false);
   const [selectedOption, setSelectedOption] = useState('dashboard');
 
@@ -220,7 +220,7 @@ const HeroAlternatives = () => {
               <X className="w-5 h-5" />
             </button>
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Demo Coming Soon!</h2>
-            <p className="text-gray-700">We're working on adding a full demo walkthrough. Stay tuned!</p>
+            <p className="text-gray-700">We&apos;re working on adding a full demo walkthrough. Stay tuned!</p>
           </div>
         </div>
       )}
@@ -228,4 +228,4 @@ const HeroAlternatives = () => {
   );
 };
 
-export default HeroAlternatives;
+export default Hero;

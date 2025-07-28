@@ -15,7 +15,7 @@ const testimonials = [
     name: 'John Doe',
     title: 'CMO, AnotherCompany',
     text: 'The insights from the AI Suite were game-changing for our strategy.',
- image: '/Avatar Style.jpg',
+    image: '/Avatar Style.jpg',
     rating: 4,
   },
   {
@@ -44,7 +44,7 @@ export default function Testimonials() {
           What Our Users Say
         </h2>
         <blockquote className="max-w-2xl mx-auto text-xl italic text-gray-600 dark:text-gray-300 mb-6">
-          "{testimonials[activeTestimonial].text}"
+          &ldquo;{testimonials[activeTestimonial].text}&rdquo;
         </blockquote>
         <div className="flex items-center justify-center space-x-4">
           <Image

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowRight, Play, BarChart3, Target, Zap, TrendingUp, Users, Mail, Globe, Star } from "lucide-react";
+import { ArrowRight, Play, BarChart3, Target, Zap, TrendingUp, Users, Mail, Globe, Star, X } from "lucide-react";
 
 const Badge = ({ children }) => (
   <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium backdrop-blur-sm border border-white/20">
@@ -17,9 +17,9 @@ const Button = ({ children, variant = "primary", size = "md", onClick, className
     md: "px-6 py-3",
     lg: "px-8 py-4 text-lg"
   };
-  
+
   return (
-    <button 
+    <button
       className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
       onClick={onClick}
     >
@@ -28,11 +28,9 @@ const Button = ({ children, variant = "primary", size = "md", onClick, className
   );
 };
 
-// Option 1: Animated Dashboard Mockup
 const AnimatedDashboard = () => (
   <div className="relative bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-2xl p-8 max-w-5xl mx-auto border border-white/10">
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <div className="w-3 h-3 bg-red-400 rounded-full"></div>
@@ -41,8 +39,7 @@ const AnimatedDashboard = () => (
         </div>
         <div className="text-white/60 text-sm">AI Marketing Dashboard</div>
       </div>
-      
-      {/* Stats Cards */}
+
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {[
           { icon: TrendingUp, label: "Conversion Rate", value: "24.5%", change: "+12%" },
@@ -60,8 +57,7 @@ const AnimatedDashboard = () => (
           </div>
         ))}
       </div>
-      
-      {/* Chart Area */}
+
       <div className="bg-white/5 rounded-lg p-6 border border-white/10">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-white text-lg font-semibold">Campaign Performance</h3>
@@ -72,12 +68,11 @@ const AnimatedDashboard = () => (
           </div>
         </div>
         <div className="relative h-32">
-          {/* Simplified chart visualization */}
           <svg className="w-full h-full" viewBox="0 0 400 128">
-            <path 
-              d="M 0 100 Q 50 80 100 60 T 200 40 T 300 20 T 400 10" 
-              stroke="url(#gradient)" 
-              strokeWidth="3" 
+            <path
+              d="M 0 100 Q 50 80 100 60 T 200 40 T 300 20 T 400 10"
+              stroke="url(#gradient)"
+              strokeWidth="3"
               fill="none"
               className="animate-pulse"
             />
@@ -95,7 +90,6 @@ const AnimatedDashboard = () => (
   </div>
 );
 
-// Option 2: Feature Grid
 const FeatureGrid = () => (
   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
     {[
@@ -106,8 +100,8 @@ const FeatureGrid = () => (
       { icon: Users, title: "Audience Insights", desc: "Understand your customers deeply" },
       { icon: Star, title: "AI Optimization", desc: "Continuously improve results" }
     ].map((feature, index) => (
-      <div 
-        key={index} 
+      <div
+        key={index}
         className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105"
       >
         <feature.icon className="w-12 h-12 text-purple-400 mb-4" />
@@ -118,41 +112,38 @@ const FeatureGrid = () => (
   </div>
 );
 
-// Option 3: Floating Elements
 const FloatingElements = () => (
   <div className="relative max-w-5xl mx-auto h-96 overflow-hidden rounded-2xl">
     <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-white/10 rounded-2xl"></div>
-    
-    {/* Floating cards with animations */}
-    <div className="absolute top-8 left-8 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 animate-bounce" style={{animationDelay: '0s', animationDuration: '3s'}}>
+
+    <div className="absolute top-8 left-8 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>
       <div className="flex items-center space-x-2">
         <TrendingUp className="w-5 h-5 text-green-400" />
         <span className="text-white text-sm font-medium">+127% ROI</span>
       </div>
     </div>
-    
-    <div className="absolute top-20 right-12 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 animate-bounce" style={{animationDelay: '1s', animationDuration: '3s'}}>
+
+    <div className="absolute top-20 right-12 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 animate-bounce" style={{ animationDelay: '1s', animationDuration: '3s' }}>
       <div className="flex items-center space-x-2">
         <Users className="w-5 h-5 text-blue-400" />
         <span className="text-white text-sm font-medium">2.4k Leads</span>
       </div>
     </div>
-    
-    <div className="absolute bottom-16 left-16 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 animate-bounce" style={{animationDelay: '2s', animationDuration: '3s'}}>
+
+    <div className="absolute bottom-16 left-16 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 animate-bounce" style={{ animationDelay: '2s', animationDuration: '3s' }}>
       <div className="flex items-center space-x-2">
         <Target className="w-5 h-5 text-purple-400" />
         <span className="text-white text-sm font-medium">98% Accuracy</span>
       </div>
     </div>
-    
-    <div className="absolute bottom-8 right-8 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 animate-bounce" style={{animationDelay: '1.5s', animationDuration: '3s'}}>
+
+    <div className="absolute bottom-8 right-8 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '3s' }}>
       <div className="flex items-center space-x-2">
         <Zap className="w-5 h-5 text-yellow-400" />
         <span className="text-white text-sm font-medium">Auto Optimize</span>
       </div>
     </div>
-    
-    {/* Central logo/icon */}
+
     <div className="absolute inset-0 flex items-center justify-center">
       <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-8">
         <BarChart3 className="w-16 h-16 text-white" />
@@ -168,72 +159,71 @@ const HeroAlternatives = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-pink-900">
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <Badge>🚀 Now with GPT-4 Integration</Badge>
-            <h1 className="mt-8 text-5xl md:text-7xl font-bold text-white leading-tight">
-              AI-Powered Marketing
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-                {" "}
-                That Converts
-              </span>
-            </h1>
-            <p className="mt-6 text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              Transform your marketing strategy with our AI suite. Generate compelling campaigns,
-              optimize performance, and scale your brand with intelligent automation.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">
-                Start Free Trial <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button variant="secondary" size="lg" onClick={() => setShowDemo(true)}>
-                <Play className="mr-2 w-5 h-5" /> Watch Demo
-              </Button>
-            </div>
-            
-            {/* Option Selector */}
-            <div className="mt-12 flex justify-center space-x-4">
-              <button 
-                onClick={() => setSelectedOption('dashboard')}
+        <div className="max-w-7xl mx-auto text-center">
+          <Badge>🚀 Now with GPT-4 Integration</Badge>
+          <h1 className="mt-8 text-5xl md:text-7xl font-bold text-white leading-tight">
+            AI-Powered Marketing
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+              {" "}That Converts
+            </span>
+          </h1>
+          <p className="mt-6 text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+            Transform your marketing strategy with our AI suite. Generate compelling campaigns,
+            optimize performance, and scale your brand with intelligent automation.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg">
+              Start Free Trial <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <Button variant="secondary" size="lg" onClick={() => setShowDemo(true)}>
+              <Play className="mr-2 w-5 h-5" /> Watch Demo
+            </Button>
+          </div>
+
+          <div className="mt-12 flex justify-center space-x-4">
+            {['dashboard', 'features', 'floating'].map((option) => (
+              <button
+                key={option}
+                onClick={() => setSelectedOption(option)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                  selectedOption === 'dashboard' 
-                    ? 'bg-white/20 text-white' 
+                  selectedOption === option
+                    ? 'bg-white/20 text-white'
                     : 'bg-white/5 text-white/60 hover:text-white'
                 }`}
               >
-                Dashboard Mockup
+                {option.charAt(0).toUpperCase() + option.slice(1).replace('-', ' ')}
               </button>
-              <button 
-                onClick={() => setSelectedOption('features')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                  selectedOption === 'features' 
-                    ? 'bg-white/20 text-white' 
-                    : 'bg-white/5 text-white/60 hover:text-white'
-                }`}
-              >
-                Feature Grid
-              </button>
-              <button 
-                onClick={() => setSelectedOption('floating')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                  selectedOption === 'floating' 
-                    ? 'bg-white/20 text-white' 
-                    : 'bg-white/5 text-white/60 hover:text-white'
-                }`}
-              >
-                Floating Elements
-              </button>
-            </div>
-            
-            {/* Dynamic Content */}
-            <div className="mt-16">
-              {selectedOption === 'dashboard' && <AnimatedDashboard />}
-              {selectedOption === 'features' && <FeatureGrid />}
-              {selectedOption === 'floating' && <FloatingElements />}
-            </div>
+            ))}
+          </div>
+
+          <div className="mt-16">
+            {selectedOption === 'dashboard' && <AnimatedDashboard />}
+            {selectedOption === 'features' && <FeatureGrid />}
+            {selectedOption === 'floating' && <FloatingElements />}
           </div>
         </div>
       </section>
+
+      {showDemo && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+          onClick={() => setShowDemo(false)}
+        >
+          <div
+            className="bg-white rounded-xl p-6 w-full max-w-md mx-auto relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowDemo(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-black"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">Demo Coming Soon!</h2>
+            <p className="text-gray-700">We're working on adding a full demo walkthrough. Stay tuned!</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

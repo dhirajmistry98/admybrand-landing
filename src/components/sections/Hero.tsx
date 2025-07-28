@@ -28,8 +28,8 @@ const Button = ({ children, variant = "primary", size = "md", onClick, className
   );
 };
 
-const AnimatedDashboard = () => (
-  <div className="relative bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-2xl p-8 max-w-5xl mx-auto border border-white/10">
+const AnimatedDashboard = ({ animatedElements }) => (
+  <div className={`relative bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-2xl p-8 max-w-5xl mx-auto border border-white/10 ${animatedElements?.has('dashboard') ? 'animate-fade-in' : ''}`}>
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
@@ -90,8 +90,8 @@ const AnimatedDashboard = () => (
   </div>
 );
 
-const FeatureGrid = () => (
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+const FeatureGrid = ({ animatedElements }) => (
+  <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto ${animatedElements?.has('features') ? 'animate-fade-in' : ''}`}>
     {[
       { icon: Zap, title: "AI Content Generation", desc: "Create compelling copy in seconds" },
       { icon: Target, title: "Smart Targeting", desc: "Reach the right audience automatically" },
@@ -112,8 +112,8 @@ const FeatureGrid = () => (
   </div>
 );
 
-const FloatingElements = () => (
-  <div className="relative max-w-5xl mx-auto h-96 overflow-hidden rounded-2xl">
+const FloatingElements = ({ animatedElements }) => (
+  <div className={`relative max-w-5xl mx-auto h-96 overflow-hidden rounded-2xl ${animatedElements?.has('floating') ? 'animate-fade-in' : ''}`}>
     <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-white/10 rounded-2xl"></div>
 
     <div className="absolute top-8 left-8 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>
@@ -152,9 +152,26 @@ const FloatingElements = () => (
   </div>
 );
 
-const Hero = () => {
+const Hero = ({ animatedElements, setShowDemo: externalSetShowDemo }) => {
   const [showDemo, setShowDemo] = useState(false);
   const [selectedOption, setSelectedOption] = useState('dashboard');
+  
+  // Use external setShowDemo if provided, otherwise use internal state
+  const handleShowDemo = () => {
+    if (externalSetShowDemo) {
+      externalSetShowDemo(true);
+    } else {
+      setShowDemo(true);
+    }
+  };
+
+  const handleCloseDemo = () => {
+    if (externalSetShowDemo) {
+      externalSetShowDemo(false);
+    } else {
+      setShowDemo(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-pink-900">
@@ -175,7 +192,7 @@ const Hero = () => {
             <Button size="lg">
               Start Free Trial <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <Button variant="secondary" size="lg" onClick={() => setShowDemo(true)}>
+            <Button variant="secondary" size="lg" onClick={handleShowDemo}>
               <Play className="mr-2 w-5 h-5" /> Watch Demo
             </Button>
           </div>
@@ -197,24 +214,24 @@ const Hero = () => {
           </div>
 
           <div className="mt-16">
-            {selectedOption === 'dashboard' && <AnimatedDashboard />}
-            {selectedOption === 'features' && <FeatureGrid />}
-            {selectedOption === 'floating' && <FloatingElements />}
+            {selectedOption === 'dashboard' && <AnimatedDashboard animatedElements={animatedElements} />}
+            {selectedOption === 'features' && <FeatureGrid animatedElements={animatedElements} />}
+            {selectedOption === 'floating' && <FloatingElements animatedElements={animatedElements} />}
           </div>
         </div>
       </section>
 
-      {showDemo && (
+      {showDemo && !externalSetShowDemo && (
         <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
-          onClick={() => setShowDemo(false)}
+          onClick={handleCloseDemo}
         >
           <div
             className="bg-white rounded-xl p-6 w-full max-w-md mx-auto relative"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              onClick={() => setShowDemo(false)}
+              onClick={handleCloseDemo}
               className="absolute top-4 right-4 text-gray-500 hover:text-black"
             >
               <X className="w-5 h-5" />

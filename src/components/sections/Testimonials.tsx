@@ -1,11 +1,9 @@
 import React from "react";
-import Image from "next/image";
 
 interface Testimonial {
   name: string;
   role: string;
   company: string;
-  image: string;
   content: string;
   rating: number;
 }
@@ -21,7 +19,6 @@ const testimonials: Testimonial[] = [
     name: "Sarah Johnson",
     role: "Marketing Director",
     company: "TechFlow Inc.",
-    image: "https://ui-avatars.com/api/?name=Sarah+Johnson&background=a855f7&color=fff&size=128",
     content: "ADmyBRAND AI Suite transformed our marketing efficiency. We're generating 3x more leads with half the effort.",
     rating: 5
   },
@@ -29,7 +26,6 @@ const testimonials: Testimonial[] = [
     name: "Michael Chen",
     role: "Founder",
     company: "StartupX",
-    image: "https://ui-avatars.com/api/?name=Michael+Chen&background=ec4899&color=fff&size=128",
     content: "The AI-powered insights helped us identify new market opportunities we never knew existed.",
     rating: 5
   },
@@ -37,7 +33,6 @@ const testimonials: Testimonial[] = [
     name: "Emily Rodriguez",
     role: "Brand Manager",
     company: "Global Retail Co.",
-    image: "https://ui-avatars.com/api/?name=Emily+Rodriguez&background=06b6d4&color=fff&size=128",
     content: "Incredible ROI! Our campaign performance improved by 250% within the first month.",
     rating: 5
   }
@@ -75,17 +70,12 @@ const Testimonials: React.FC<TestimonialsProps> = ({
         <blockquote className="text-xl text-white/90 mb-8 leading-relaxed">
           &ldquo;{testimonials[activeTestimonial].content}&rdquo;
         </blockquote>
-        <div className="flex items-center justify-center space-x-4">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white font-bold text-xl">
-            {testimonials[activeTestimonial].name.split(' ').map(n => n[0]).join('')}
+        <div className="text-center">
+          <div className="text-white font-semibold text-lg">
+            {testimonials[activeTestimonial].name}
           </div>
-          <div className="text-left">
-            <div className="text-white font-semibold">
-              {testimonials[activeTestimonial].name}
-            </div>
-            <div className="text-white/70">
-              {testimonials[activeTestimonial].role} at {testimonials[activeTestimonial].company}
-            </div>
+          <div className="text-white/70 mt-1">
+            {testimonials[activeTestimonial].role} at {testimonials[activeTestimonial].company}
           </div>
         </div>
         <div className="flex justify-center mt-8 space-x-2">

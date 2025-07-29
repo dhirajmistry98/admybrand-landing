@@ -1,8 +1,13 @@
+// src/components/sections/Pricing.tsx
 import React from "react";
 import Card from "../ui/Card";
 import Badge from "../ui/Badge";
 import Button from "../ui/Button";
 import { Check } from "lucide-react";
+
+interface PricingProps {
+  animatedElements: Set<string>;
+}
 
 const pricingPlans = [
   {
@@ -14,9 +19,9 @@ const pricingPlans = [
       "5 AI-generated campaigns/month",
       "Basic analytics",
       "Email support",
-      "1 brand profile"
+      "1 brand profile",
     ],
-    popular: false
+    popular: false,
   },
   {
     name: "Professional",
@@ -29,9 +34,9 @@ const pricingPlans = [
       "Priority support",
       "5 brand profiles",
       "A/B testing",
-      "Custom integrations"
+      "Custom integrations",
     ],
-    popular: true
+    popular: true,
   },
   {
     name: "Enterprise",
@@ -44,13 +49,13 @@ const pricingPlans = [
       "Custom AI training",
       "White-label options",
       "Advanced security",
-      "SLA guarantee"
+      "SLA guarantee",
     ],
-    popular: false
-  }
+    popular: false,
+  },
 ];
 
-const Pricing = ({ animatedElements }) => (
+const Pricing: React.FC<PricingProps> = ({ animatedElements }) => (
   <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8">
     <div className="max-w-7xl mx-auto">
       <div
@@ -65,8 +70,11 @@ const Pricing = ({ animatedElements }) => (
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
           Choose Your Plan
         </h2>
-        <p className="text-xl text-white/70">Start free, then scale as you grow</p>
+        <p className="text-xl text-white/70">
+          Start free, then scale as you grow
+        </p>
       </div>
+
       <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {pricingPlans.map((plan, index) => (
           <Card

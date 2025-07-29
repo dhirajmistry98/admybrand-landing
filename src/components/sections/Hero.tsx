@@ -167,7 +167,7 @@ const FloatingElements: React.FC = () => (
 
 // Updated interface to accept the props that are being passed
 interface HeroAlternativesProps {
-  animatedElements?: Set<unknown>;
+  animatedElements: Set<string>;
   setShowDemo?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

@@ -9,7 +9,7 @@ interface Testimonial {
 }
 
 interface TestimonialsProps {
-  animatedElements: Set<unknown>;
+  animatedElements: Set<string>;
   activeTestimonial: number;
   setActiveTestimonial: React.Dispatch<React.SetStateAction<number>>;
 }

@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
 
-const useScrollAnimation = () => {
-  const [animatedElements, setAnimatedElements] = useState(new Set());
+import { useState, useEffect } from 'react';
+
+const useScrollAnimation = (): Set<string> => {
+  const [animatedElements, setAnimatedElements] = useState<Set<string>>(new Set());
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -11,11 +13,22 @@ const useScrollAnimation = () => {
           }
         });
       },
-      { threshold: 0.1 }
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      }
     );
-    document.querySelectorAll("[data-animate]").forEach((el) => observer.observe(el));
+
+    const elements = document.querySelectorAll('[data-animate]');
+    elements.forEach((el) => {
+      if (el.id) {
+        observer.observe(el);
+      }
+    });
+
     return () => observer.disconnect();
   }, []);
+
   return animatedElements;
 };
 

@@ -18,9 +18,10 @@ const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [expandedFAQ, setExpandedFAQ] = useState(null);
-  const animatedElements = useScrollAnimation();
-
+  const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
+  
+  // Type the animatedElements properly
+  const animatedElements: Set<string> = useScrollAnimation();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,7 +47,6 @@ const LandingPage = () => {
             <a href="#about" className="text-2xl text-white" onClick={() => setIsMenuOpen(false)}>
               About
             </a>
-            {/* You can reuse your Button component if you want */}
             <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-semibold text-lg">
               Get Started
             </button>

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface Testimonial {
   name: string;
@@ -20,7 +21,7 @@ const testimonials: Testimonial[] = [
     name: "Sarah Johnson",
     role: "Marketing Director",
     company: "TechFlow Inc.",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+    image: "https://ui-avatars.com/api/?name=Sarah+Johnson&background=a855f7&color=fff&size=128",
     content: "ADmyBRAND AI Suite transformed our marketing efficiency. We're generating 3x more leads with half the effort.",
     rating: 5
   },
@@ -28,7 +29,7 @@ const testimonials: Testimonial[] = [
     name: "Michael Chen",
     role: "Founder",
     company: "StartupX",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    image: "https://ui-avatars.com/api/?name=Michael+Chen&background=ec4899&color=fff&size=128",
     content: "The AI-powered insights helped us identify new market opportunities we never knew existed.",
     rating: 5
   },
@@ -36,7 +37,7 @@ const testimonials: Testimonial[] = [
     name: "Emily Rodriguez",
     role: "Brand Manager",
     company: "Global Retail Co.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    image: "https://ui-avatars.com/api/?name=Emily+Rodriguez&background=06b6d4&color=fff&size=128",
     content: "Incredible ROI! Our campaign performance improved by 250% within the first month.",
     rating: 5
   }
@@ -72,14 +73,12 @@ const Testimonials: React.FC<TestimonialsProps> = ({
           ))}
         </div>
         <blockquote className="text-xl text-white/90 mb-8 leading-relaxed">
-          "{testimonials[activeTestimonial].content}"
+          &ldquo;{testimonials[activeTestimonial].content}&rdquo;
         </blockquote>
         <div className="flex items-center justify-center space-x-4">
-          <img
-            src={testimonials[activeTestimonial].image}
-            alt={testimonials[activeTestimonial].name}
-            className="w-16 h-16 rounded-full"
-          />
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white font-bold text-xl">
+            {testimonials[activeTestimonial].name.split(' ').map(n => n[0]).join('')}
+          </div>
           <div className="text-left">
             <div className="text-white font-semibold">
               {testimonials[activeTestimonial].name}

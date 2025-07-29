@@ -12,7 +12,7 @@ import Testimonials from "../components/sections/Testimonials";
 import FAQ from "../components/sections/FAQ";
 import { Play } from "lucide-react";
 
-const testimonialsCount = 3; // update if testimonials list changes
+const testimonialsCount = 3; 
 
 const LandingPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +21,7 @@ const LandingPage = () => {
   const [expandedFAQ, setExpandedFAQ] = useState(null);
   const animatedElements = useScrollAnimation();
 
-  // Auto-rotate testimonials
+
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTestimonial((prev) => (prev + 1) % testimonialsCount);

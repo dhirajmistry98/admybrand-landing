@@ -2,6 +2,12 @@ import React from "react";
 import Card from "../ui/Card";
 import { ChevronDown } from "lucide-react";
 
+interface FAQProps {
+  animatedElements: Set<string>;
+  expandedFAQ: number | null;
+  setExpandedFAQ: React.Dispatch<React.SetStateAction<number | null>>;
+}
+
 const faqs = [
   {
     question: "How does the AI content generation work?",
@@ -30,7 +36,7 @@ const faqs = [
   }
 ];
 
-const FAQ = ({
+const FAQ: React.FC<FAQProps> = ({
   animatedElements,
   expandedFAQ,
   setExpandedFAQ

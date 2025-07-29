@@ -2,7 +2,11 @@ import React from "react";
 import Button from "../ui/Button";
 import { Sparkles, Menu } from "lucide-react";
 
-const Header = ({ onMenuOpen }) => (
+interface HeaderProps {
+  onMenuOpen: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onMenuOpen }) => (
   <nav className="fixed w-full z-40 bg-white/10 backdrop-blur-lg border-b border-white/20">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center py-4">

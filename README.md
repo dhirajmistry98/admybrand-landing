@@ -2,7 +2,7 @@
 
 A modern, responsive landing page for the **ADmyBRAND AI Suite**, an AI-powered marketing tool built with **Next.js 14**, **TypeScript**, and **Tailwind CSS**.
 
-🌐 [Live Demo](https://your-deployment-url.com)
+🌐 [Live Demo](https://admybrand-landing-5qex.vercel.app/)
 
 ---
 
@@ -45,7 +45,7 @@ This project delivers a full-featured, mobile-first landing page that showcases 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/admybrand-ai-suite.git
+git clone https://github.com/dhirajmistry98/admybrand-landing
 cd admybrand-ai-suite
 
 # Install dependencies
